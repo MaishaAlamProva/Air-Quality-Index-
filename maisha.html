@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIR QUALITY INDEX</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .box {
+            border: 3px solid black;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .box1 {
+            width: 800px;
+            height: 610px;
+            line-height: 100px;
+        }
+        .box2 {
+            width: 800px;
+            height: 830px;
+            line-height: 200px;
+            margin-left: 0px;
+        }
+        .registration-box {
+            width: 800px;
+            height: 770px; 
+            text-align: left;
+            padding: 20px;
+            background-color: #f9f9f9; /* Light background */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+        .registration-box:hover {
+            transform: scale(1.01); /* Slight zoom on hover */
+        }
+        .box4 {
+            width: 800px;
+            height: 670px;
+            line-height: 100px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: rgb(38, 174, 59);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: rgb(21, 120, 213);
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <img src="airQualityIndex.png" alt="AIR QUALITY INDEX Logo" style="width: 150px; height: 150px;">
+        <h1>AIR QUALITY INDEX</h1>
+    </div>
+
+    <div class="container">
+        <div>
+            <div class="box box1">Box 1</div>
+            <div class="box box2">Box 2</div>
+        </div>
+        <div>
+            <div class="box registration-box">
+                <h2 style="text-align: center;">Registration Page</h2>
+                <!-- Just the fixed JS and form part -->
+            <!-- In your form tag, add id="registerForm" -->
+        <form id="registerForm">
+
+    <!-- (Form fields stay the same) -->
+
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+
+    <label for="confirmpassword">Confirm Password:</label>
+    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" placeholder="Location" required>
+
+    <label for="zipcode">Zip Code:</label>
+    <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" required>
+
+
+    <p>I agree to the terms and conditions</p>
+    <div style="text-align: left;">
+        <label style="display: inline-flex; align-items: center; gap: 6px; font-weight: normal;">
+            <input type="checkbox" id="terms" name="terms" required style="vertical-align: middle;">
+            
+        </label>
+    </div>
+    
+   
+
+    <button type="submit">Submit</button>
+</form>
+
+            </div>
+            <div class="box box4">Box 4</div>
+        </div>
+    </div>
+
+    <!-- JavaScript part -->
+<script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const fullname = document.getElementById("fullname").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmpassword").value;
+        const location = document.getElementById("location").value.trim();
+        const zip = document.getElementById("zipcode").value.trim();
+        const terms = document.getElementById("terms").checked;
+
+        const namePattern = /^[A-Za-z\s]+$/;
+        const aiubEmailPattern = /^[0-9]{2}-[0-9]{5}-[0-9]@student\.aiub\.edu$/;
+        const zipPattern = /^\d{4,6}$/;
+
+        if (!fullname || !email || !password || !confirmPassword || !location || !zip) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        if (!namePattern.test(fullname)) {
+            alert("Full name must contain only letters and spaces.");
+            return;
+        }
+
+        if (!aiubEmailPattern.test(email)) {
+            alert("Please enter a valid AIUB student email (e.g., 22-48406-3@student.aiub.edu).");
+            return;
+        }
+
+        if (!zipPattern.test(zip)) {
+            alert("ZIP Code should be 4 to 6 digits.");
+            return;
+        }
+
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+
+        if (!terms) {
+            alert("You must agree to the Terms and Conditions.");
+            return;
+        }
+
+        // Everything is valid
+        alert("Registration successful!");
+        // You can submit the form here if needed
+        // this.submit();
+    });
+</script>
+
+
+
+</body>
+</html>
